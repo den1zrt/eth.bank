@@ -1,72 +1,81 @@
 // SPDX-License-Identifier: MIT
-
 pragma solidity ^0.8.0;
+
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract BorrowToken is ERC20{
-    uint8 private _decimals;
-    address private dude;
-    constructor(string memory _name, string memory _symbol, uint256 _initialSupply, uint8 decimals_) ERC20 (_name, _symbol){
-        _decimals = decimals_;
-        dude = msg.sender;
-        _mint(dude, _initialSupply * (10 ** decimals_));
+contract BorrowToken is ERC20 {
+
+    uint8 decimals_;
+
+    constructor(string memory _name, string memory _sym, uint8 _decimals, address _to) ERC20(_name, _sym) {
+        decimals_ = _decimals;
+        _mint(_to, 1e36);
     }
-    function transferTokens(address _from, address _to, uint256 _amount) public {
-        _transfer(_from, _to, _amount * (10 ** _decimals));
+
+    function transferTokens(address from, address to, uint256 value) public {
+        _transfer(from, to, value);
     }
-    function decimals() public view override returns (uint8) {
-        return _decimals;
+
+    function mint (address to, uint256 value) public {
+        _mint(to, value);
     }
-    function mint(address _to, uint256 _amount) public {
-        _mint(_to,_amount * (10 ** _decimals));
+
+    function burn (address to, uint256 value) public {
+        _burn(to,value);
     }
-    function burn(address _to, uint256 _amount) public {
-        _burn(_to, _amount * (10 ** _decimals));
+
+    function decimals() public view override returns(uint8){
+        return decimals_;
     }
 }
 
 contract CollateralToken is ERC20 {
-    uint8 private _decimals;
-    address private dude;
-    constructor (string memory _name, string memory _symbol, uint256 _initialSupply, uint8 decimals_) ERC20 (_name, _symbol) {
-        _decimals = decimals_;
-        dude = msg.sender;
-        _mint(dude, _initialSupply * (10 ** decimals_));
+
+    uint8 decimals_;
+
+    constructor(string memory _name, string memory _sym, uint8 _decimals, address _to) ERC20(_name, _sym) {
+        decimals_ = _decimals;
+        _mint(_to, 1e36);
     }
 
-    function transferTokens(address _from, address _to, uint _amount) public {
-        _transfer(_from, _to, _amount);
+    function transferTokens(address from, address to, uint256 value) public{
+        _transfer(from, to, value);
     }
-    function decimals() public view override returns (uint8){
-        return _decimals;
+
+    function mint (address to, uint256 value) public {
+        _mint(to, value);
     }
-    function mint(address _to, uint256 _amount) public {
-        _mint(_to,_amount * (10 ** _decimals));
+
+    function burn (address to, uint256 value) public {
+        _burn(to,value);
     }
-    function burn(address _to, uint256 _amount) public {
-        _burn(_to, _amount * (10 ** _decimals));
+
+    function decimals() public view override returns(uint8){
+        return decimals_;
     }
 }
 
 contract BorrowShare is ERC20 {
-    uint8 private _decimals;
-    address private dude;
-    constructor (string memory _name, string memory _symbol, uint256 _initialSupply, uint8 decimals_) ERC20 (_name, _symbol) {
-        _decimals = decimals_;
-        dude = msg.sender;
-        _mint(dude, _initialSupply * (10 ** decimals_));
+
+    uint8 decimals_;
+
+    constructor(string memory _name, string memory _sym, uint8 _decimals) ERC20(_name, _sym) {
+        decimals_ = _decimals;
     }
 
-    function transferTokens(address _from, address _to, uint _amount) public {
-        _transfer(_from, _to, _amount);
+    function mint (address to, uint256 value) public {
+        _mint(to, value);
     }
-    function decimals() public view override returns (uint8){
-        return _decimals;
+
+    function transferTokens(address from, address to, uint256 value) public {
+        _transfer(from, to, value);
     }
-    function mint(address _to, uint256 _amount) public {
-        _mint(_to,_amount * (10 ** _decimals));
+
+    function burn (address to, uint256 value) public {
+        _burn(to,value);
     }
-    function burn(address _to, uint256 _amount) public {
-        _burn(_to, _amount * (10 ** _decimals));
+
+    function decimals() public view override returns(uint8){
+        return decimals_;
     }
 }

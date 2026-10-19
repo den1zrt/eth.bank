@@ -30,7 +30,10 @@ const routes = createBrowserRouter([{
             },
             {
                 path: "*",
-                element: <><h1>sybau get back to dashboard</h1></>
+                element: <div style={{textAlign: "center"}}>
+                    <h2>sybau get back to dashboard</h2>
+                    <Link to="/dashboard"><button className='btn theme-danger btn-solid btn-lg'>Yes sir</button></Link>
+                </div>
             }
 
         ]

@@ -37,9 +37,13 @@ function App() {
     return(
         <>
         <Header/>
+        <div className='space' style={{margin: "7vh 0px"}}></div>
         <Data.Provider value={{ctx}}>
             <Outlet/>
         </Data.Provider>
+        <footer style={{textAlign: "center", position: "absolute", bottom: "10px", left: "45.4vw"}}>
+            <h3 className='btn theme-secondary btn-outline'>denizrt | Проф 2077</h3>
+        </footer>
         </>
     )
 }

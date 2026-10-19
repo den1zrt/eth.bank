@@ -8,11 +8,9 @@ function Profile() {
     if (!ctx) return <p>Loading account…</p>
 
     return(<>
+        <h1 style={{textAlign: "center", margin:"4vh 0px"}}>Profile</h1>
         <div className="d-flex justify-content-center">
             <div className="card ">
-                <div className="card-body">
-                    <h3 className="text-align-center">Profile</h3>
-                </div>
                 <div className="card-body">
                     <h3>Address: {ctx.address}</h3>
                 </div>
