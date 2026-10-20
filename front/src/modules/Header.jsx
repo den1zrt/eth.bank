@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 function Header(){
     return(
-        <nav className="d-flex justify-content-around p-5">
+        <nav className="d-flex justify-content-around p-5 mt-4 mb-10">
             <h3>PLH</h3>
             {/* <NavLink to="/" className="text-decoration-none">SHitbank</NavLink> */}
             <NavLink to="/dashboard" className="btn theme-info btn-subtle btn-lg w-9">Dashboard</NavLink>

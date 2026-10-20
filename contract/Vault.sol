@@ -69,9 +69,21 @@ contract Vault is Initializable, ERC4626Upgradeable, UUPSUpgradeable {
         managingAssets += amount;
     }
 
-    function getVault() public view returns (string memory _title, uint256 _availableAssets, uint256 _totalSupply, address _owner, uint256 _minDeposit, uint256 _sharePrice) {
+    function getVault() public view returns (
+        string memory _title,
+        uint256 _availableAssets,
+        uint256 _totalSupply,
+        address _owner,
+        uint256 _sharePrice
+    ) {
         uint256 sharePrice = totalSupply() != 0 ? managingAssets / totalSupply() : 0;
-        return(title, managingAssets, totalSupply(), owner, minDeposit_, sharePrice);
+        uint256 supply = totalSupply();
+        return(title,
+         managingAssets,
+         supply,
+         owner,
+         sharePrice
+         );
 
     }
 

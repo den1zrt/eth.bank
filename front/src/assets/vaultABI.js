@@ -1,4 +1,4 @@
-[
+export default [
   {
     "inputs": [
       {
@@ -787,6 +787,11 @@
       {
         "internalType": "uint256",
         "name": "_availableAssets",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_totalSupply",
         "type": "uint256"
       },
       {

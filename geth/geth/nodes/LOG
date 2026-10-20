@@ -1,8 +1,8 @@
-=============== Oct 19, 2026 (MSK) ===============
-13:22:40.456691 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
-13:22:40.459272 db@open opening
-13:22:40.460308 version@stat F·[] S·0B[] Sc·[]
-13:22:40.460826 db@janitor F·2 G·0
-13:22:40.460826 db@open done T·1.5546ms
-13:52:03.306230 db@close closing
-13:52:03.306763 db@close done T·532.1µs
+=============== Oct 20, 2026 (MSK) ===============
+13:43:22.721015 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+13:43:22.725068 db@open opening
+13:43:22.725068 version@stat F·[] S·0B[] Sc·[]
+13:43:22.726069 db@janitor F·2 G·0
+13:43:22.726069 db@open done T·1.0008ms
+15:35:03.742006 db@close closing
+15:35:03.742526 db@close done T·520.3µs

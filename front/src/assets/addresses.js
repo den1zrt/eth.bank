@@ -1,3 +1,9 @@
-export const MARKETS = ["0xC249a39d3B9013D84F42b0409553e0F579438F22"]
+export const MARKETS = [{
+    "key": "market1",
+    "value": "0x358AA13c52544ECCEF6B0ADD0f801012ADAD5eE3"
+}]
 
-export const VAULTS = ["0x820ff6130C34B0cD27c703Bf611db61565CEb8Ac"]
+export const VAULTS = [{
+    "key": "vault1",
+    "value":"0x7EF2e0048f5bAeDe046f6BF797943daF4ED8CB47"
+}]

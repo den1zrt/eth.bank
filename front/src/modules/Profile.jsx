@@ -8,7 +8,7 @@ function Profile() {
     if (!ctx) return <p>Loading account…</p>
 
     return(<>
-        <h1 style={{textAlign: "center", margin:"4vh 0px"}}>Profile</h1>
+        <h1 className="text-center my-10">Profile</h1>
         <div className="d-flex justify-content-center">
             <div className="card ">
                 <div className="card-body">
