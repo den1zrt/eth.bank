@@ -6,3 +6,15 @@
 13:43:22.726069 db@open done T·1.0008ms
 15:35:03.742006 db@close closing
 15:35:03.742526 db@close done T·520.3µs
+=============== Oct 21, 2026 (MSK) ===============
+09:06:50.205719 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+09:06:50.215170 version@stat F·[] S·0B[] Sc·[]
+09:06:50.215170 db@open opening
+09:06:50.215170 journal@recovery F·1
+09:06:50.215170 journal@recovery recovering @1
+09:06:50.221997 memdb@flush created L0@2 N·2 S·181B "loc..seq,v2":"version,v1"
+09:06:50.221997 version@stat F·[1] S·181B[181B] Sc·[0.25]
+09:06:50.226123 db@janitor F·3 G·0
+09:06:50.226123 db@open done T·10.9529ms
+10:32:24.180610 db@close closing
+10:32:24.181121 db@close done T·510.9µs

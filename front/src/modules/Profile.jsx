@@ -1,7 +1,6 @@
 import { useContext, useState } from "react"
 import { Data } from "../App"
 import { formatEther } from "ethers"
-import 'bootstrap/dist/css/bootstrap.min.css'
 
 function Profile() {
     const { ctx } = useContext(Data)
@@ -17,6 +16,7 @@ function Profile() {
                 <div className="card-body">
                     <h3>Balance: {formatEther(ctx.balance.toString())}</h3>
                 </div>
+            
             </div>
         </div>
     </>)

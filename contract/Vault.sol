@@ -14,6 +14,10 @@ contract Vault is Initializable, ERC4626Upgradeable, UUPSUpgradeable {
     uint256 minDeposit_;
     uint16 apy;
 
+
+    event Deposited(address _acc, uint256 amount);
+    event Withdrawal (address _acc, uint256 amount);
+
     modifier SufficientAmount(uint amount, uint min) {
         require(amount > min, "Value must be greater");
         _;
@@ -41,6 +45,7 @@ contract Vault is Initializable, ERC4626Upgradeable, UUPSUpgradeable {
         borrowToken.transferTokens(msg.sender, address(this), amount);
         _mint(msg.sender, shares);
         managingAssets += amount;
+        emit Deposited(msg.sender, amount);
     }
 
     function withdrawVault(uint256 amount) public SufficientAmount(amount, 0) {
@@ -48,6 +53,7 @@ contract Vault is Initializable, ERC4626Upgradeable, UUPSUpgradeable {
         borrowToken.transferFrom(address(this), msg.sender, amount);
         _burn(msg.sender, shares);
         managingAssets -= amount;
+        emit Withdrawal(msg.sender, amount);
     }
 
     function minDeposit() public view returns (uint256) {
@@ -67,6 +73,7 @@ contract Vault is Initializable, ERC4626Upgradeable, UUPSUpgradeable {
 
     function addReward(uint amount) external {
         managingAssets += amount;
+        emit Deposited(msg.sender, amount);
     }
 
     function getVault() public view returns (

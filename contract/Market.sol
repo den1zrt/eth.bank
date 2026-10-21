@@ -29,6 +29,11 @@ contract Market is Initializable, ERC4626Upgradeable, UUPSUpgradeable {
     BorrowShare borrowShare;
 
 
+    event Deposited(address _acc, uint256 _amount);
+    event Withdrawal(address _acc, uint256 _amount);
+    event Borrowed(address _acc, uint256 _amount);
+    event Repaid(address _acc, uint256 _amount);
+
     modifier OnlyOwner() {
         require(msg.sender == owner, "not owner");
         _;
@@ -86,6 +91,7 @@ contract Market is Initializable, ERC4626Upgradeable, UUPSUpgradeable {
         uint256 shares = previewDeposit(amount);
         collateralToken.transferTokens(msg.sender, address(this), amount);
         _mint(msg.sender, shares);
+        emit Deposited(msg.sender, amount);
     }
 
     function withdraw(uint256 amount) public {
@@ -94,6 +100,7 @@ contract Market is Initializable, ERC4626Upgradeable, UUPSUpgradeable {
         require(shares <= maxWithdraw(msg.sender), "Insufficient balance");
         collateralToken.transferTokens(address(this), msg.sender, amount);
         _burn(msg.sender, shares);
+        emit Withdrawal(msg.sender, amount);
     }
     
     function borrow(uint256 amount) public {
@@ -106,6 +113,7 @@ contract Market is Initializable, ERC4626Upgradeable, UUPSUpgradeable {
         require(borrowToken.balanceOf(address(this)) >= amount,"Market balance too low");
         borrowToken.transferTokens(address(this), msg.sender, amount);
         userBorrowIndex[msg.sender] = currentBorrowIndex;
+        emit Borrowed(msg.sender, amount);
     }
 
     function repay(uint256 amount) public {
@@ -124,6 +132,7 @@ contract Market is Initializable, ERC4626Upgradeable, UUPSUpgradeable {
         if (borrowShare.balanceOf(msg.sender) == 0) {
             userBorrowIndex[msg.sender] = 0;
         }
+        emit Repaid(msg.sender, amount);
     }
 
 
@@ -133,13 +142,20 @@ contract Market is Initializable, ERC4626Upgradeable, UUPSUpgradeable {
         uint256 _borrowSharePrice,
         uint256 _collateralPrice,
         uint256 _interestRate,
-        uint256 _currentBorrowIndex) {
+        uint256 _supplied,
+        uint256 _assets,
+        uint256 _currentBorrowIndex
+    ) {
+        uint256 supplied = totalSupply();
+        uint256 assets = totalAssets();
     return (
         title,
         lltv,
         borrowSharePrice,
         collateralPrice,
         interestRate,
+        supplied,
+        assets,
         currentBorrowIndex
         );
     }

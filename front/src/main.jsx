@@ -2,7 +2,8 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, Link } from 'react-router-dom'
 import App from './App.jsx'
-import Main from "./modules/Main.jsx"
+import Market from './modules/Market.jsx'
+import Vault from './modules/Vault.jsx'
 import Dashboard from "./modules/Dashboard.jsx"
 import Profile from "./modules/Profile.jsx"
 
@@ -11,19 +12,15 @@ const routes = createBrowserRouter([{
         element: <App/>,
         children: [
             {
-                index: true, element: <Main/>
+                index: true, element: <Dashboard/>
             },
             {
-                path:"/dashboard",
-                element: <Dashboard/>
+                path:"/market",
+                element:<Market/>
             },
             {
-                path:"/invest",
-                element:<h1>Invest Page</h1>
-            },
-            {
-                path:"/borrow",
-                element:<h1>Borrow Page</h1>
+                path:"/vault",
+                element:<Vault/>
             },{
                 path:"/profile",
                 element:<Profile/>
@@ -32,7 +29,7 @@ const routes = createBrowserRouter([{
                 path: "*",
                 element: <div style={{textAlign: "center"}}>
                     <h2>sybau get back to dashboard</h2>
-                    <Link to="/dashboard"><button className='btn theme-danger btn-solid btn-lg'>Yes sir</button></Link>
+                    <Link to="/"><button className='btn theme-danger btn-solid btn-lg'>Yes sir</button></Link>
                 </div>
             }
 

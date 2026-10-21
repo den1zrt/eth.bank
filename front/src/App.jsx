@@ -25,10 +25,10 @@ function App() {
             const signer = await provider.getSigner()
             const contracts = { markets: [], vaults: [] }
             MARKETS.map((object) => {
-                contracts.markets.push(new ContractContext(object.value, marketABI, signer))
+                contracts.markets.push({contract: new ContractContext(object.value, marketABI, signer), title: object.key})
             })
             VAULTS.map((object) => {
-                contracts.vaults.push(new ContractContext(object.value, vaultABI, signer))
+                contracts.vaults.push({contract: new ContractContext(object.value, vaultABI, signer), title: object.key})
             })
             const address  = await signer.getAddress()
             const balance = await provider.getBalance(address)
