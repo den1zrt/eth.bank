@@ -12,7 +12,9 @@ export const Data = createContext(null)
 function App() {
 
     const [ctx, setCtx] = useState(null)
-
+    // window.ethereum.on("accountsChanged",(accounts) => {
+                
+    //         })
     useEffect(() => {
         async function init(){
             if (!window.ethereum) 
@@ -33,6 +35,7 @@ function App() {
             const address  = await signer.getAddress()
             const balance = await provider.getBalance(address)
             setCtx({provider, signer, contracts, address, balance})
+            
         }
     
         init()
