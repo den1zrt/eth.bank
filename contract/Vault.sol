@@ -65,7 +65,7 @@ contract Vault is Initializable, ERC4626Upgradeable, UUPSUpgradeable {
     }
 
     function sendToMarket(address _market, uint256 amount) external {
-        require(amount < borrowToken.balanceOf(address(this)), "Insufficient balance in vault");
+        require(amount <= borrowToken.balanceOf(address(this)), "Insufficient balance in vault");
         
         borrowToken.transferTokens(address(this), _market, amount);
         managingAssets -= amount;

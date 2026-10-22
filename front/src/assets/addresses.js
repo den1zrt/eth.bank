@@ -1,9 +1,9 @@
 export const MARKETS = [{
     "key": "market1",
-    "value": "0xC249a39d3B9013D84F42b0409553e0F579438F22"
+    "value": "0x35df4F10179C31376Ca59572E268ab9b62EEf238"
 }]
 
 export const VAULTS = [{
     "key": "vault1",
-    "value":"0x820ff6130C34B0cD27c703Bf611db61565CEb8Ac"
+    "value":"0xb4B4BA8a668a6E50916b1891A64564cb71908361"
 }]

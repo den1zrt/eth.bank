@@ -75,12 +75,14 @@ contract Market is Initializable, ERC4626Upgradeable, UUPSUpgradeable {
         return (borrowShare.balanceOf(_acc) * (currentBorrowIndex - userBorrowIndex[_acc]) / 1e18);
     }
     function accrue() public {
-        currentBorrowIndex += currentBorrowIndex * interestRate * (block.number - lastAccrueBlock) / (blocksPerYear * 1e10); // interestRate n * 1e8
+        if (block.number > lastAccrueBlock){
+            currentBorrowIndex += currentBorrowIndex * interestRate * (block.number - lastAccrueBlock) / (blocksPerYear * 1e10); // interestRate n * 1e8
+        }
         lastAccrueBlock = block.number;
     }
 
     function getLTV(address _acc) public view returns (uint256){
-        if (collateralToken.balanceOf(_acc) == 0) {
+        if (balanceOf(_acc) == 0) {
             return 0;
         }
         return (((borrowShare.balanceOf(_acc) * borrowSharePrice * 1e18) / (balanceOf(_acc) * collateralPrice)) );
@@ -91,7 +93,6 @@ contract Market is Initializable, ERC4626Upgradeable, UUPSUpgradeable {
         uint256 shares = previewDeposit(amount);
         collateralToken.transferTokens(msg.sender, address(this), amount);
         _mint(msg.sender, shares);
-        emit Deposited(msg.sender, amount);
     }
 
     function withdraw(uint256 amount) public {
@@ -100,7 +101,6 @@ contract Market is Initializable, ERC4626Upgradeable, UUPSUpgradeable {
         require(shares <= maxWithdraw(msg.sender), "Insufficient balance");
         collateralToken.transferTokens(address(this), msg.sender, amount);
         _burn(msg.sender, shares);
-        emit Withdrawal(msg.sender, amount);
     }
     
     function borrow(uint256 amount) public {
@@ -109,11 +109,8 @@ contract Market is Initializable, ERC4626Upgradeable, UUPSUpgradeable {
         borrowShare.mint(msg.sender, shares);
         require(getLTV(msg.sender) < lltv, "LTV >= LLTV");
         IVault(vault).sendToMarket(address(this), amount);
-        require(borrowToken.balanceOf(vault) >= amount,"vault balance too low");
-        require(borrowToken.balanceOf(address(this)) >= amount,"Market balance too low");
         borrowToken.transferTokens(address(this), msg.sender, amount);
         userBorrowIndex[msg.sender] = currentBorrowIndex;
-        emit Borrowed(msg.sender, amount);
     }
 
     function repay(uint256 amount) public {
@@ -132,7 +129,6 @@ contract Market is Initializable, ERC4626Upgradeable, UUPSUpgradeable {
         if (borrowShare.balanceOf(msg.sender) == 0) {
             userBorrowIndex[msg.sender] = 0;
         }
-        emit Repaid(msg.sender, amount);
     }
 
 
@@ -166,14 +162,17 @@ contract Market is Initializable, ERC4626Upgradeable, UUPSUpgradeable {
         uint256 _collateralTokens,
         uint256 _collateralShares,
         uint256 _userBorrowIndex,
+        uint256 _totalDebt,
         uint256 _ltv
     ) {
+        uint256 debt = convertToAssets(borrowShare.balanceOf(msg.sender) * borrowSharePrice + accruedInterest(msg.sender));
         return (
         borrowToken.balanceOf(msg.sender),
         borrowShare.balanceOf(msg.sender),
         collateralToken.balanceOf(msg.sender),
         balanceOf(msg.sender),
         userBorrowIndex[msg.sender],
+        debt,
         getLTV(msg.sender)
         );
     }

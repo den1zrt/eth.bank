@@ -8,7 +8,7 @@ function Card({contract, type}) {
         const load = async () => {
             if (type == "market"){
                 setObject(await contract.getMarket());
-                setKeys(["Title", "LLTV", "Borrow Price", "Collateral Price", "Interest Rate", "Borrow Index"])
+                setKeys(["Title", "LLTV", "Borrow Price", "Collateral Price", "Interest Rate","Borrow Index"])
             }
             else if (type == "vault"){
                 setObject(await contract.getVault())

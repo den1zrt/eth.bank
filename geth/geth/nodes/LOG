@@ -1,20 +1,20 @@
-=============== Oct 20, 2026 (MSK) ===============
-13:43:22.721015 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
-13:43:22.725068 db@open opening
-13:43:22.725068 version@stat F·[] S·0B[] Sc·[]
-13:43:22.726069 db@janitor F·2 G·0
-13:43:22.726069 db@open done T·1.0008ms
-15:35:03.742006 db@close closing
-15:35:03.742526 db@close done T·520.3µs
-=============== Oct 21, 2026 (MSK) ===============
-09:06:50.205719 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
-09:06:50.215170 version@stat F·[] S·0B[] Sc·[]
-09:06:50.215170 db@open opening
-09:06:50.215170 journal@recovery F·1
-09:06:50.215170 journal@recovery recovering @1
-09:06:50.221997 memdb@flush created L0@2 N·2 S·181B "loc..seq,v2":"version,v1"
-09:06:50.221997 version@stat F·[1] S·181B[181B] Sc·[0.25]
-09:06:50.226123 db@janitor F·3 G·0
-09:06:50.226123 db@open done T·10.9529ms
-10:32:24.180610 db@close closing
-10:32:24.181121 db@close done T·510.9µs
+=============== Oct 22, 2026 (MSK) ===============
+11:18:10.491819 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+11:18:10.493902 db@open opening
+11:18:10.494487 version@stat F·[] S·0B[] Sc·[]
+11:18:10.495072 db@janitor F·2 G·0
+11:18:10.495072 db@open done T·1.1695ms
+11:34:25.324401 db@close closing
+11:34:25.324401 db@close done T·0s
+=============== Oct 22, 2026 (MSK) ===============
+11:36:28.330415 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+11:36:28.339205 version@stat F·[] S·0B[] Sc·[]
+11:36:28.339205 db@open opening
+11:36:28.339205 journal@recovery F·1
+11:36:28.339205 journal@recovery recovering @1
+11:36:28.345731 memdb@flush created L0@2 N·2 S·181B "loc..seq,v2":"version,v1"
+11:36:28.345731 version@stat F·[1] S·181B[181B] Sc·[0.25]
+11:36:28.350807 db@janitor F·3 G·0
+11:36:28.350807 db@open done T·11.602ms
+11:37:17.550500 db@close closing
+11:37:17.550500 db@close done T·0s
